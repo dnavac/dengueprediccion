@@ -1,38 +1,39 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, SubmitField
-from wtforms.validators import DataRequired
 import joblib
 
-# Cargar el modelo de predicción
-# with open('modelo_prediccion.pkl', 'rb') as f:
-#     modelo = pickle.load(f)
-modelo = joblib.load('best_model.pkl')
+# Cargar el modelo de predicción con manejo de errores
+try:
+    modelo = joblib.load('best_model.pkl')
+except Exception as e:
+    print(f"Error al cargar el modelo: {e}")
+    modelo = None
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
 
 class SintomasForm(FlaskForm):
-    febre = BooleanField('Febre', validators=[DataRequired()])
-    mialgia = BooleanField('Mialgia', validators=[DataRequired()])
-    cefaleia = BooleanField('Cefaleia', validators=[DataRequired()])
-    exantema = BooleanField('Exantema', validators=[DataRequired()])
-    vomito = BooleanField('Vómito', validators=[DataRequired()])
-    nausea = BooleanField('Náusea', validators=[DataRequired()])
-    dor_costas = BooleanField('Dor nas Costas', validators=[DataRequired()])
-    conjuntvit = BooleanField('Conjuntivite', validators=[DataRequired()])
-    artrite = BooleanField('Artrite', validators=[DataRequired()])
-    artralgia = BooleanField('Artralgia', validators=[DataRequired()])
-    petequia_n = BooleanField('Petéquias', validators=[DataRequired()])
-    laco = BooleanField('Laceração', validators=[DataRequired()])
-    dor_retro = BooleanField('Dor Retroocular', validators=[DataRequired()])
-    diabetes = BooleanField('Diabetes', validators=[DataRequired()])
-    hematolog = BooleanField('Doença Hematológica', validators=[DataRequired()])
-    hepatopat = BooleanField('Hepatopatia', validators=[DataRequired()])
-    renal = BooleanField('Doença Renal', validators=[DataRequired()])
-    hipertensa = BooleanField('Hipertensão', validators=[DataRequired()])
-    acido_pept = BooleanField('Úlcera Péptica', validators=[DataRequired()])
-    auto_imune = BooleanField('Doença Autoimune', validators=[DataRequired()])
+    febre = BooleanField('Febre')
+    mialgia = BooleanField('Mialgia')
+    cefaleia = BooleanField('Cefaleia')
+    exantema = BooleanField('Exantema')
+    vomito = BooleanField('Vómito')
+    nausea = BooleanField('Náusea')
+    dor_costas = BooleanField('Dor nas Costas')
+    conjuntvit = BooleanField('Conjuntivite')
+    artrite = BooleanField('Artrite')
+    artralgia = BooleanField('Artralgia')
+    petequia_n = BooleanField('Petéquias')
+    laco = BooleanField('Laceração')
+    dor_retro = BooleanField('Dor Retroocular')
+    diabetes = BooleanField('Diabetes')
+    hematolog = BooleanField('Doença Hematológica')
+    hepatopat = BooleanField('Hepatopatia')
+    renal = BooleanField('Doença Renal')
+    hipertensa = BooleanField('Hipertensão')
+    acido_pept = BooleanField('Úlcera Péptica')
+    auto_imune = BooleanField('Doença Autoimune')
     submit = SubmitField('Enviar')
 
 @app.route('/', methods=['GET', 'POST'])
@@ -46,12 +47,13 @@ def index():
                     int(form.renal.data), int(form.hipertensa.data), int(form.acido_pept.data), int(form.auto_imune.data)]
         
         # Hacer la predicción
-        prediccion = modelo.predict([sintomas])
+        if modelo:
+            prediccion = modelo.predict([sintomas])
+            resultado = 'Dengue' if prediccion[0] == 1 else 'Chikungunya'
+        else:
+            resultado = 'Error en la predicción debido a problemas con el modelo'
         
-        # Determinar el resultado basado en la predicción
-        resultado = 'Dengue' if prediccion[0] == 1 else 'Chikungunya'
-        
-        return render_template('result', resultado=resultado)
+        return redirect(url_for('result', resultado=resultado))
     return render_template('index.html', form=form)
 
 @app.route('/result/<resultado>', methods=['GET'])
