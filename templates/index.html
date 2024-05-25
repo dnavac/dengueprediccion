@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Predicción de Síntomas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Ingrese sus síntomas</h1>
+        <form method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    {{ form.febre(class="custom-control-input", id="febre") }}
+                    <label class="custom-control-label" for="febre">Fiebre</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.mialgia(class="custom-control-input", id="mialgia") }}
+                    <label class="custom-control-label" for="mialgia">Dolor muscular</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.cefaleia(class="custom-control-input", id="cefaleia") }}
+                    <label class="custom-control-label" for="cefaleia">Dolor de cabeza</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.exantema(class="custom-control-input", id="exantema") }}
+                    <label class="custom-control-label" for="exantema">Sarpullido</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.vomito(class="custom-control-input", id="vomito") }}
+                    <label class="custom-control-label" for="vomito">Vómito</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.nausea(class="custom-control-input", id="nausea") }}
+                    <label class="custom-control-label" for="nausea">Náusea</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.dor_costas(class="custom-control-input", id="dor_costas") }}
+                    <label class="custom-control-label" for="dor_costas">Dolor de espalda</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.conjuntvit(class="custom-control-input", id="conjuntvit") }}
+                    <label class="custom-control-label" for="conjuntvit">Conjuntivitis</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.artrite(class="custom-control-input", id="artrite") }}
+                    <label class="custom-control-label" for="artrite">Artritis</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.artralgia(class="custom-control-input", id="artralgia") }}
+                    <label class="custom-control-label" for="artralgia">Dolor de articulaciones</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.petequia_n(class="custom-control-input", id="petequia_n") }}
+                    <label class="custom-control-label" for="petequia_n">Petéquias</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.laco(class="custom-control-input", id="laco") }}
+                    <label class="custom-control-label" for="laco">¿Se realizó la prueba del torniquete?</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.dor_retro(class="custom-control-input", id="dor_retro") }}
+                    <label class="custom-control-label" for="dor_retro">Dolor retroocular</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.diabetes(class="custom-control-input", id="diabetes") }}
+                    <label class="custom-control-label" for="diabetes">Diabetes</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.hematolog(class="custom-control-input", id="hematolog") }}
+                    <label class="custom-control-label" for="hematolog">¿Enfermedades hematológicas?</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.hepatopat(class="custom-control-input", id="hepatopat") }}
+                    <label class="custom-control-label" for="hepatopat">¿Enfermedades hepáticas?</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.renal(class="custom-control-input", id="renal") }}
+                    <label class="custom-control-label" for="renal">¿Enfermedad renal?</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.hipertensa(class="custom-control-input", id="hipertensa") }}
+                    <label class="custom-control-label" for="hipertensa">¿Hipertensión?</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.acido_pept(class="custom-control-input", id="acido_pept") }}
+                    <label class="custom-control-label" for="acido_pept">¿Úlcera Péptica?</label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                    {{ form.auto_imune(class="custom-control-input", id="auto_imune") }}
+                    <label class="custom-control-label" for="auto_imune">¿Enfermedad Autoimune?</label>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
