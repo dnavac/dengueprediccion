@@ -7,13 +7,41 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
+    <div id="loader" class="container mt-5 text-center" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Cargando...</span>
+        </div>
+        <p>Cargando...</p>
+    </div>
+    <div id="resultado" class="container mt-5 text-center" style="display: none;">
         <h1>Resultado de la Predicción</h1>
-        <p>El resultado de su predicción es: <strong>{{ resultado }}</strong></p>
+        <p>El resultado de su predicción es: <strong id="resultado-text">{{ resultado }}</strong></p>
         <a href="{{ url_for('index') }}" class="btn btn-primary">Volver</a>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Función para mostrar la animación de carga y luego mostrar el resultado
+        function mostrarResultado(resultado) {
+            // Mostrar la animación de carga
+            document.getElementById('loader').style.display = 'block';
+
+            // Simular una carga de 2 segundos (puedes ajustar este tiempo según necesites)
+            setTimeout(function() {
+                // Ocultar la animación de carga
+                document.getElementById('loader').style.display = 'none';
+
+                // Mostrar el resultado de la predicción
+                document.getElementById('resultado-text').innerText = resultado;
+                document.getElementById('resultado').style.display = 'block';
+            }, 2000); // 2 segundos de simulación de carga
+        }
+
+        // Llamada a la función para mostrar el resultado (puedes hacer esto en tu lógica de backend)
+        mostrarResultado("{{ resultado }}");
+    </script>
 </body>
 </html>

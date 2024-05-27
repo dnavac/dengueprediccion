@@ -6,117 +6,243 @@
     <title>Predicción de Síntomas</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    body {
+        background-image: url('ruta/de/imagen.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    .form-check-input {
+        width: 8em;
+        height: 1.5em;
+        margin-top: -10px;
+    }
+    .table th, .table td {
+        vertical-align: middle;
+    }
+    footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .column{
+        text-align: center;
+    }
+    .mb-4{
+        text-align: center;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #212529; /* Color más oscuro al pasar el mouse */
+        color: white; /* Texto blanco al pasar el mouse */
+    }
+</style>
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Ingrese sus síntomas</h1>
+        <h5 class="text-info text-right"> Nota: Marque el botón cuando es si, deje el botón en blanco cuando sea no.</h5>
         <form method="post" novalidate>
             {{ form.hidden_tag() }}
-            <div class="form-group">
-                <div class="custom-control custom-switch">
-                    {{ form.febre(class="custom-control-input", id="febre") }}
-                    <label class="custom-control-label" for="febre">Fiebre</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.mialgia(class="custom-control-input", id="mialgia") }}
-                    <label class="custom-control-label" for="mialgia">Dolor muscular</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.cefaleia(class="custom-control-input", id="cefaleia") }}
-                    <label class="custom-control-label" for="cefaleia">Dolor de cabeza</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.exantema(class="custom-control-input", id="exantema") }}
-                    <label class="custom-control-label" for="exantema">Sarpullido</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.vomito(class="custom-control-input", id="vomito") }}
-                    <label class="custom-control-label" for="vomito">Vómito</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.nausea(class="custom-control-input", id="nausea") }}
-                    <label class="custom-control-label" for="nausea">Náusea</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.dor_costas(class="custom-control-input", id="dor_costas") }}
-                    <label class="custom-control-label" for="dor_costas">Dolor de espalda</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.conjuntvit(class="custom-control-input", id="conjuntvit") }}
-                    <label class="custom-control-label" for="conjuntvit">Conjuntivitis</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.artrite(class="custom-control-input", id="artrite") }}
-                    <label class="custom-control-label" for="artrite">Artritis</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.artralgia(class="custom-control-input", id="artralgia") }}
-                    <label class="custom-control-label" for="artralgia">Dolor de articulaciones</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.petequia_n(class="custom-control-input", id="petequia_n") }}
-                    <label class="custom-control-label" for="petequia_n">Petéquias</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.laco(class="custom-control-input", id="laco") }}
-                    <label class="custom-control-label" for="laco">¿Se realizó la prueba del torniquete?</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.dor_retro(class="custom-control-input", id="dor_retro") }}
-                    <label class="custom-control-label" for="dor_retro">Dolor retroocular</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.diabetes(class="custom-control-input", id="diabetes") }}
-                    <label class="custom-control-label" for="diabetes">Diabetes</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.hematolog(class="custom-control-input", id="hematolog") }}
-                    <label class="custom-control-label" for="hematolog">¿Enfermedades hematológicas?</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.hepatopat(class="custom-control-input", id="hepatopat") }}
-                    <label class="custom-control-label" for="hepatopat">¿Enfermedades hepáticas?</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.renal(class="custom-control-input", id="renal") }}
-                    <label class="custom-control-label" for="renal">¿Enfermedad renal?</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.hipertensa(class="custom-control-input", id="hipertensa") }}
-                    <label class="custom-control-label" for="hipertensa">¿Hipertensión?</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.acido_pept(class="custom-control-input", id="acido_pept") }}
-                    <label class="custom-control-label" for="acido_pept">¿Úlcera Péptica?</label>
-                </div>
-
-                <div class="custom-control custom-switch">
-                    {{ form.auto_imune(class="custom-control-input", id="auto_imune") }}
-                    <label class="custom-control-label" for="auto_imune">¿Enfermedad Autoimune?</label>
-                </div>
-            </div>
-            <div class="form-group">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr class="p-3 mb-2 bg-primary text-white table-bordered">
+                        <th class="column">Síntomas</th>
+                        <th class="column">Si/No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='p-3 mb-2 table-bordered'>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Fiebre?</td>
+                            <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                                <div class="custom-control custom-radio">
+                                    {{ form.febre(class="custom-control-input", id="febre") }}
+                                    <label class="custom-control-label" for="febre"></label>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor muscular?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.mialgia(class="custom-control-input", id="mialgia") }}
+                                <label class="custom-control-label" for="mialgia"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor de cabeza?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.cefaleia(class="custom-control-input", id="cefaleia") }}
+                                <label class="custom-control-label" for="cefaleia"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Sarpullido?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.exantema(class="custom-control-input", id="exantema") }}
+                                <label class="custom-control-label" for="exantema"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Vómito?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.vomito(class="custom-control-input", id="vomito") }}
+                                <label class="custom-control-label" for="vomito"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Náusea?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.nausea(class="custom-control-input", id="nausea") }}
+                                <label class="custom-control-label" for="nausea"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor de espalda?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.dor_costas(class="custom-control-input", id="dor_costas") }}
+                                <label class="custom-control-label" for="dor_costas"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Conjuntivitis?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.conjuntvit(class="custom-control-input", id="conjuntvit") }}
+                                <label class="custom-control-label" for="conjuntvit"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Artritis?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.artrite(class="custom-control-input", id="artrite") }}
+                                <label class="custom-control-label" for="artrite"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor de articulaciones?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.artralgia(class="custom-control-input", id="artralgia") }}
+                                <label class="custom-control-label" for="artralgia"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Petéquias?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.petequia_n(class="custom-control-input", id="petequia_n") }}
+                                <label class="custom-control-label" for="petequia_n"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Se realizó la prueba del torniquete?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.laco(class="custom-control-input", id="laco") }}
+                                <label class="custom-control-label" for="laco"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor retroocular?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.dor_retro(class="custom-control-input", id="dor_retro") }}
+                                <label class="custom-control-label" for="dor_retro"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Diabetes?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.diabetes(class="custom-control-input", id="diabetes") }}
+                                <label class="custom-control-label" for="diabetes"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Enfermedades hematológicas?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.hematolog(class="custom-control-input", id="hematolog") }}
+                                <label class="custom-control-label" for="hematolog"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Enfermedades hepáticas?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.hepatopat(class="custom-control-input", id="hepatopat") }}
+                                <label class="custom-control-label" for="hepatopat"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes enfermedad renal?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.renal(class="custom-control-input", id="renal") }}
+                                <label class="custom-control-label" for="renal"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Hipertensión?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.hipertensa(class="custom-control-input", id="hipertensa") }}
+                                <label class="custom-control-label" for="hipertensa"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Úlcera Péptica?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.acido_pept(class="custom-control-input", id="acido_pept") }}
+                                <label class="custom-control-label" for="acido_pept"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Enfermedad Autoimune?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">
+                            <div class="custom-control custom-radio">
+                                {{ form.auto_imune(class="custom-control-input", id="auto_imune") }}
+                                <label class="custom-control-label" for="auto_imune"></label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group text-center">
                 {{ form.submit(class="btn btn-primary") }}
             </div>
         </form>
     </div>
+    <footer class="bg-light text-dark">
+        <div class="container">
+            <p>&copy; 2024 Predicción de Síntomas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
