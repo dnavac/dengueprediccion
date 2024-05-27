@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Predicción de Síntomas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-check-input {
+            width: 8em;
+            height: 1.5em;
+            margin-top: -10px;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .column{
+            text-align: center;
+        }
+        .mb-4{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Ingrese sus síntomas</h1>
+        <br>
+        <form method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <table class="table">
+                <thead>
+                    <tr class="p-3 mb-2 bg-primary text-white table-bordered">
+                        <th class="column">Síntomas</th>
+                        <th class="column">Sí</th>
+                        <th class="column">No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Fiebre?</td>
+                        <td class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.febre(class="form-check-input", type="radio", value="yes", id="febre_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.febre(class="form-check-input", type="radio", value="no", id="febre_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor muscular?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.mialgia(class="form-check-input", type="radio", value="yes", id="mialgia_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.mialgia(class="form-check-input", type="radio", value="no", id="mialgia_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor de cabeza?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.cefaleia(class="form-check-input", type="radio", value="yes", id="cefaleia_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.cefaleia(class="form-check-input", type="radio", value="no", id="cefaleia_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Sarpullido?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.exantema(class="form-check-input", type="radio", value="yes", id="exantema_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.exantema(class="form-check-input", type="radio", value="no", id="exantema_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Vómito?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.vomito(class="form-check-input", type="radio", value="yes", id="vomito_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.vomito(class="form-check-input", type="radio", value="no", id="vomito_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Náuseas?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.nausea(class="form-check-input", type="radio", value="yes", id="nausea_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.nausea(class="form-check-input", type="radio", value="no", id="nausea_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor de espalda?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.dor_costas(class="form-check-input", type="radio", value="yes", id="dor_costas_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.dor_costas(class="form-check-input", type="radio", value="no", id="dor_costas_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Conjuntivitis?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.conjuntvit(class="form-check-input", type="radio", value="yes", id="conjuntvit_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.conjuntvit(class="form-check-input", type="radio", value="no", id="conjuntvit_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Artritis?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.artrite(class="form-check-input", type="radio", value="yes", id="artrite_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.artrite(class="form-check-input", type="radio", value="no", id="artrite_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor de articulaciones?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.artralgia(class="form-check-input", type="radio", value="yes", id="artralgia_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.artralgia(class="form-check-input", type="radio", value="no", id="artralgia_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Petéquias?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.petequia_n(class="form-check-input", type="radio", value="yes", id="petequia_n_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.petequia_n(class="form-check-input", type="radio", value="no", id="petequia_n_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Se realizó la prueba del torniquete?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.laco(class="form-check-input", type="radio", value="yes", id="laco_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.laco(class="form-check-input", type="radio", value="no", id="laco_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Dolor retroocular?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.dor_retro(class="form-check-input", type="radio", value="yes", id="dor_retro_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.dor_retro(class="form-check-input", type="radio", value="no", id="dor_retro_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Diabetes?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.diabetes(class="form-check-input", type="radio", value="yes", id="diabetes_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.diabetes(class="form-check-input", type="radio", value="no", id="diabetes_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Enfermedades hematológicas?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.hematolog(class="form-check-input", type="radio", value="yes", id="hematolog_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.hematolog(class="form-check-input", type="radio", value="no", id="hematolog_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Enfermedades hepáticas?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.hepatopat(class="form-check-input", type="radio", value="yes", id="hepatopat_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.hepatopat(class="form-check-input", type="radio", value="no", id="hepatopat_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Enfermedad renal?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.renal(class="form-check-input", type="radio", value="yes", id="renal_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.renal(class="form-check-input", type="radio", value="no", id="renal_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Hipertensión?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.hipertensa(class="form-check-input", type="radio", value="yes", id="hipertensa_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.hipertensa(class="form-check-input", type="radio", value="no", id="hipertensa_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Úlcera Péptica?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.acido_pept(class="form-check-input", type="radio", value="yes", id="acido_pept_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.acido_pept(class="form-check-input", type="radio", value="no", id="acido_pept_no") }}</td>
+                    </tr>
+                    <tr>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">¿Tienes Enfermedad Autoimune?</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.auto_imune(class="form-check-input", type="radio", value="yes", id="auto_imune_yes") }}</td>
+                        <td  class="p-3 mb-2 bg-light-subtle text-light-emphasis table-bordered">{{ form.auto_imune(class="form-check-input", type="radio", value="no", id="auto_imune_no") }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group text-center">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    <footer class="bg-light text-dark">
+        <div class="container">
+            <p>&copy; 2024 Predicción de Síntomas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
